@@ -70,19 +70,6 @@
       };
     });
 
-    # ----------------------------
-    # Rust PID1
-    # ----------------------------
-    container-init = pkgs.rustPlatform.buildRustPackage {
-      pname = "container-init";
-      version = "0.2.0";
-
-      src = ./rust-init;
-
-      cargoLock = {
-        lockFile = ./rust-init/Cargo.lock;
-      };
-    };
 
   in {
     packages.${system} = {
