@@ -70,6 +70,7 @@
       };
     });
 
+  container-init = minimalbase.packages.${system}.container-init;
 
   in {
     packages.${system} = {
