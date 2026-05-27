@@ -4,9 +4,13 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     minimalbase.url = "github:nonrootdocker/minimalbase-ng";
+    sabnzbd-src = {
+      url = "github:sabnzbd/sabnzbd";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, minimalbase }:
+  outputs = { self, nixpkgs, minimalbase, sabnzbd-src }:
   let
     system = "x86_64-linux";
     pkgs = import nixpkgs { inherit system; };
@@ -18,7 +22,7 @@
       pname = "sabnzbd";
       version = "latest";
 
-      src = ./sabnzbd-src;
+      src = sabnzbd-src;
 
       buildInputs = [
         pkgs.python3
