@@ -38,10 +38,6 @@
       installPhase = ''
         mkdir -p $out/app
 
-        if [ -f requirements.txt ]; then
-          $out/app/python-venv/bin/pip install -r requirements.txt
-        fi
-
         # SABnzbd source
         cp -r . $out/app/sabnzbd-src
 
