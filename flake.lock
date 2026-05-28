@@ -5,11 +5,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1779891857,
-        "narHash": "sha256-SKq/OtTvVaNNlubW4aPfq2MQc5FE035cIXmP0mz/Oms=",
+        "lastModified": 1779973169,
+        "narHash": "sha256-GNIniyQXq20mL642EinEafuK6cmNWi0BvyoZd88RSZ4=",
         "owner": "nonrootdocker",
         "repo": "minimalbase-ng",
-        "rev": "3f3940a7f46e85108d54836c3964893f9a909dc0",
+        "rev": "287c8a86f295db7f120f0cd264c804cdc3cc7f82",
         "type": "github"
       },
       "original": {
@@ -20,31 +20,15 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1779861559,
-        "narHash": "sha256-NgL1S0ordvYDvoOU6YTKRuoG31pkh6K6aYNS8zmK8eA=",
+        "lastModified": 1779971623,
+        "narHash": "sha256-K8dZM6UtAOvznwTxH8fZ+h3HNHFgTxzLeUKmLNBK9Cg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "674ab664999dd97463b2394cc7325d597c8e1cc5",
+        "rev": "1474a8ff4c329aedae830ef5214b06789a0e1f5f",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1779560665,
-        "narHash": "sha256-tpyBcxPpcQb8ukyNF7DoCwfSY3VPsxHoYwj00Cayv5o=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "64c08a7ca051951c8eae34e3e3cb1e202fe36786",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -52,7 +36,27 @@
     "root": {
       "inputs": {
         "minimalbase": "minimalbase",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": [
+          "minimalbase",
+          "nixpkgs"
+        ],
+        "sabnzbd-src": "sabnzbd-src"
+      }
+    },
+    "sabnzbd-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1779807299,
+        "narHash": "sha256-76pnXTKIyOxQjErHPwX2VonSTPNPyKQSFBj6WklG+3s=",
+        "owner": "sabnzbd",
+        "repo": "sabnzbd",
+        "rev": "cc61dc974b383e5bce04746274407448b6d0443e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sabnzbd",
+        "repo": "sabnzbd",
+        "type": "github"
       }
     }
   },
