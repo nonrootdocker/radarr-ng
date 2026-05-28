@@ -18,6 +18,13 @@
     # ----------------------------
     # SABnzbd package
     # ----------------------------
+    sabnzbdPython = pkgs.python3.withPackages (ps: [
+      ps.apprise
+      ps.cheetah3
+      ps.cryptography
+      ps.feedparser
+      ps.pyopenssl
+    ]);
     sabnzbd = pkgs.stdenv.mkDerivation {
       pname = "sabnzbd";
       version = "latest";
@@ -25,18 +32,11 @@
       src = sabnzbd-src;
 
       buildInputs = [
-        pkgs.python3
-        pkgs.python3Packages.virtualenv
-        pkgs.python3Packages.pip
+        sabnzbdPython
       ];
 
       installPhase = ''
         mkdir -p $out/app
-        mkdir -p $out/data
-
-        # Python venv
-        python3 -m venv $out/app/python-venv
-        $out/app/python-venv/bin/pip install --upgrade pip
 
         if [ -f requirements.txt ]; then
           $out/app/python-venv/bin/pip install -r requirements.txt
