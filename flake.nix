@@ -20,12 +20,49 @@
     # ----------------------------
     sabnzbdPython = pkgs.python3.withPackages (ps: [
       ps.apprise
+      ps.babelfish
+      ps.blinker
+      ps.certifi
+      ps.charset-normalizer
       ps.cheetah3
+      ps.cheroot
+      ps.cherrypy
       ps.configobj
       ps.cryptography
       ps.feedparser
+      ps.guessit
+      ps.idna
+      ps.jaraco-classes
+      ps.jaraco-collections
+      ps.jaraco-context
+      ps.jaraco-functools
+      ps.jaraco-text
+      ps.markdown
+      ps.more-itertools
+      ps.notify2
+      ps.oauthlib
+      ps.orjson
+      ps.paho-mqtt
+      ps.portend
+      ps.puremagic
+      ps.pycparser
+      ps.pyjwt
       ps.pyopenssl
+      ps.pysocks
+      ps.python-dateutil
+      ps.pytz
+      ps.pyyaml
+      ps.rarfile
+      ps.rebulk
+      ps.requests
+      ps.requests-oauthlib
       ps.sabctools
+      ps.sgmllib3k
+      ps.six
+      ps.tempora
+      ps.ujson
+      ps.urllib3
+      ps.zc-lockfile
     ]);
 
     sabnzbd = pkgs.stdenv.mkDerivation {
