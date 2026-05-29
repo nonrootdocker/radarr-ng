@@ -21,6 +21,7 @@
     sabnzbdPython = pkgs.python3.withPackages (ps: [
       ps.apprise
       ps.cheetah3
+      ps.configobj
       ps.cryptography
       ps.feedparser
       ps.pyopenssl
