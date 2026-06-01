@@ -1,14 +1,14 @@
 {
-  description = "minimalbase-ng + jackett service";
+  description = "minimalbase-ng + radarr service";
   inputs = {
     nixpkgs.follows = "minimalbase/nixpkgs";
     minimalbase.url = "github:nonrootdocker/minimalbase-ng";
-    jackett-src = {
-      url = "https://github.com/Jackett/Jackett/releases/latest/download/Jackett.Binaries.LinuxAMDx64.tar.gz";
+    radarr-src = {
+      url = "https://radarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=x64";
       flake = false;
     };
   };
-  outputs = { self, nixpkgs, minimalbase, jackett-src }:
+  outputs = { self, nixpkgs, minimalbase, radarr-src }:
   let
     system = "x86_64-linux";
     pkgs = import nixpkgs {
@@ -19,12 +19,12 @@
     };
     opensslLib = pkgs.openssl.out;
     # ----------------------------
-    # Jackett package
+    # Radarr package
     # ----------------------------
-    jackett = pkgs.stdenv.mkDerivation {
-      pname = "jackett";
+    radarr = pkgs.stdenv.mkDerivation {
+      pname = "radarr";
       version = "latest";
-      src = jackett-src;
+      src = radarr-src;
       nativeBuildInputs = [
         pkgs.autoPatchelfHook
       ];
@@ -38,22 +38,22 @@
         pkgs.stdenv.cc.cc.lib
       ];
       installPhase = ''
-        mkdir -p $out/app/Jackett
-        cp -r . $out/app/Jackett/
+        mkdir -p $out/app/Radarr
+        cp -r . $out/app/Radarr/
       '';
     };
     # ----------------------------
     # ABI generator (Points directly to Nix Store)
     # ----------------------------
-    jackettAbi = pkgs.writeTextFile {
-      name = "jackett-abi.json";
+    radarrAbi = pkgs.writeTextFile {
+      name = "radarr-abi.json";
       text = builtins.toJSON {
         version = 2;
         process = {
-          exec = "${jackett}/app/Jackett/jackett";
+          exec = "${radarr}/app/Radarr/Radarr";
           args = [
-            "--DataFolder"
-            "/data"
+            "-nobrowser"
+            "-data=/data"
           ];
         };
       };
@@ -61,8 +61,8 @@
     };
   in {
     packages.${system} = {
-      default = self.packages.${system}.jackett-image;
-      jackett-image = pkgs.dockerTools.buildImage {
+      default = self.packages.${system}.radarr-image;
+      radarr-image = pkgs.dockerTools.buildImage {
         name = "minimalbase-ng";
         tag = "latest";
         fromImage = minimalbase.packages.${system}.base-image;
@@ -72,8 +72,8 @@
             pkgs.coreutils
             pkgs.tzdata
             pkgs.cacert
-            jackett
-            jackettAbi
+            radarr
+            radarrAbi
           ];
         };
         config = {
