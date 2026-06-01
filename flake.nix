@@ -37,6 +37,9 @@
         pkgs.lttng-ust_2_12
         pkgs.stdenv.cc.cc.lib
       ];
+      unpackPhase = ''
+        tar -xzf $src
+      '';
       installPhase = ''
         mkdir -p $out/app/Radarr
         cp -r . $out/app/Radarr/
