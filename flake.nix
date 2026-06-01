@@ -80,6 +80,7 @@
           paths = [
             pkgs.coreutils
             pkgs.tzdata
+            pkgs.lttng-ust
             pkgs.cacert
 
             jackett
