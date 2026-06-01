@@ -17,6 +17,7 @@
         allowUnfree = true;
       };
     };
+    opensslLib = pkgs.openssl.out;
     # ----------------------------
     # Jackett package
     # ----------------------------
@@ -31,7 +32,7 @@
         pkgs.icu
         pkgs.curl
         pkgs.sqlite
-        pkgs.openssl
+        opensslLib
         pkgs.zlib
         pkgs.krb5
         pkgs.lttng-ust_2_12
@@ -83,8 +84,7 @@
             "PATH=/bin"
             "TZ=UTC"
             "LANG=en_US.UTF-8"
-            "LD_LIBRARY_PATH=${pkgs.icu}/lib:${pkgs.openssl}/lib:${pkgs.zlib}/lib:${pkgs.krb5}/lib:${pkgs.lttng-ust_2_12}/lib"
-            "CLR_OPENSSL_VERSION_OVERRIDE=3"
+            "LD_LIBRARY_PATH=${pkgs.icu}/lib:${opensslLib}/lib:${pkgs.zlib}/lib:${pkgs.krb5}/lib:${pkgs.lttng-ust_2_12}/lib"
           ];
         };
       };
