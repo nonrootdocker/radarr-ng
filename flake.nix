@@ -41,8 +41,8 @@
         tar -xzf $src
       '';
       installPhase = ''
-        mkdir -p $out/app/Radarr
-        cp -r . $out/app/Radarr/
+        mkdir -p $out/app
+        cp -r . $out/app/
       '';
     };
     # ----------------------------
