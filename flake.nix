@@ -37,7 +37,9 @@
         pkgs.curl
         pkgs.sqlite
         pkgs.openssl
+        pkgs.openssl_1_1      # Explicitly added for legacy OpenSSL 1.1 compatibility
         pkgs.zlib
+        pkgs.krb5              # Added for GSSAPI / SSL handshake operations
         pkgs.lttng-ust_2_12
         pkgs.stdenv.cc.cc.lib
       ];
@@ -81,7 +83,6 @@
           paths = [
             pkgs.coreutils
             pkgs.tzdata
-            pkgs.lttng-ust
             pkgs.cacert
 
             jackett
@@ -98,7 +99,8 @@
             "PATH=/bin"
             "TZ=UTC"
             "LANG=en_US.UTF-8"
-            "LD_LIBRARY_PATH=${pkgs.icu}/lib:${pkgs.openssl}/lib:${pkgs.zlib}/lib:${pkgs.lttng-ust_2_12}/lib"
+            # Includes both OpenSSL 3.0 and OpenSSL 1.1 fallback paths
+            "LD_LIBRARY_PATH=${pkgs.icu}/lib:${pkgs.openssl}/lib:${pkgs.openssl_1_1}/lib:${pkgs.zlib}/lib:${pkgs.krb5}/lib:${pkgs.lttng-ust_2_12}/lib"
           ];
         };
       };
