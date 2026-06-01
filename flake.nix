@@ -132,6 +132,8 @@
         };
 
         config = {
+          Entrypoint = [ "${minimalbase.packages.${system}.container-init}/bin/container-init" ];
+
           User = "1000:1000";
 
           Env = [
