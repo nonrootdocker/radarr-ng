@@ -82,9 +82,9 @@
             pkgs.coreutils
             pkgs.tzdata
             pkgs.cacert
-            pkgs.ffmpeg-headless
             radarr
             radarrAbi
+            passwdFile
           ];
         };
         config = {
