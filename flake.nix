@@ -46,6 +46,13 @@
       '';
     };
     # ----------------------------
+    # User database configuration (/etc/passwd)
+    # ----------------------------
+    passwdFile = pkgs.writeTextDir "etc/passwd" ''
+      root:x:0:0:root:/root:/bin/sh
+      radarr:x:1000:1000:radarr:/data:/bin/sh
+    '';
+    # ----------------------------
     # ABI generator (Points directly to Nix Store)
     # ----------------------------
     radarrAbi = pkgs.writeTextFile {
