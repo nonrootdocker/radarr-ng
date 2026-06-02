@@ -1,8 +1,8 @@
 {
-  description = "minimalbase-ng + radarr service";
+  description = "minimalbase + radarr service";
   inputs = {
     nixpkgs.follows = "minimalbase/nixpkgs";
-    minimalbase.url = "github:nonrootdocker/minimalbase-ng";
+    minimalbase.url = "github:nonrootdocker/minimalbase";
     radarr-src = {
       url = "https://radarr.servarr.com/v1/update/master/updatefile?os=linux&runtime=netcore&arch=x64";
       flake = false;
@@ -73,7 +73,7 @@
     packages.${system} = {
       default = self.packages.${system}.radarr-image;
       radarr-image = pkgs.dockerTools.buildImage {
-        name = "minimalbase-ng";
+        name = "minimalbase";
         tag = "latest";
         fromImage = minimalbase.packages.${system}.base-image;
         copyToRoot = pkgs.buildEnv {
